@@ -6,6 +6,7 @@ const UserSchema = new mongoose.Schema({
     type: String,
     unique: true,
     required: true,
+    index: true,
   },
   name: {
     type: String,
@@ -13,8 +14,9 @@ const UserSchema = new mongoose.Schema({
   },
   username: {
     type: String,
-    // required: true,
-    // unique: true,
+    required: true,
+    unique: true,
+    index: true,
   },
   email: {
     type: String,
@@ -27,13 +29,16 @@ const UserSchema = new mongoose.Schema({
     },
     unique: true,
     required: true,
+    index: true,
   },
   emailVerified: {
     type: Boolean,
     default: false,
+    index: true,
   },
   phone: {
     type: Number,
+    index: true,
   },
   linkedIn: {
     type: String,
@@ -54,6 +59,7 @@ const UserSchema = new mongoose.Schema({
   batch: {
     type: Number,
     min: 2021,
+    index: true,
   },
   resume: {
     type: String,
@@ -73,6 +79,7 @@ const UserSchema = new mongoose.Schema({
     type: String,
     default: '',
     required: true,
+    index: true,
   },
 })
 

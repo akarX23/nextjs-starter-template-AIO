@@ -1,29 +1,12 @@
 import React from 'react'
-import { ThemeProvider, Theme, StyledEngineProvider } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline'
 
-import theme from 'helpers/muiTheme'
 import Layout from 'hoc/Layout'
 import 'helpers/firebaseConfig'
 import useGlobalAuth from 'helpers/hooks/useGlobalAuth'
-
-
-
-declare module '@mui/styles/defaultTheme' {
-  // eslint-disable-next-line @typescript-eslint/no-empty-interface
-  interface DefaultTheme extends Theme {}
-}
-
-
-
-declare module '@mui/styles/defaultTheme' {
-  // eslint-disable-next-line @typescript-eslint/no-empty-interface
-  interface DefaultTheme extends Theme {}
-}
-
+import { DefaultComponentProps } from 'helpers/types'
 
 const Wrapper = (Component: React.FC) => {
-  const PageWrapper = (props: any) => {
+  const PageWrapper: React.FC<DefaultComponentProps> = (props) => {
     useGlobalAuth()
 
     // MUTING REF ERRORS
@@ -37,17 +20,10 @@ const Wrapper = (Component: React.FC) => {
     }
 
     return (
-      <StyledEngineProvider injectFirst>
-        <ThemeProvider theme={theme}>
-          {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-          <CssBaseline />
-          <Layout pageTitle={'CC Platform'}>
-            <Component {...props} />
-          </Layout>
-          {/* <Alert /> */}
-        </ThemeProvider>
-      </StyledEngineProvider>
-    );
+      <Layout>
+        <Component {...props} />
+      </Layout>
+    )
   }
 
   return PageWrapper

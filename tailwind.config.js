@@ -1,15 +1,15 @@
 const themeConstants = {
-  paper: '#E5E5E5',
+  paper: '#222222',
   primary: {
-    main: '#36C658',
-    dark: '#00A828',
+    main: '#068888',
+    dark: '#046262',
   },
-  secondary: { main: '#353F39', dark: '#2C3530' },
+  secondary: { main: '#7AE7C7', dark: '#53DFB5' },
   error: {
-    main: '#FF0000',
+    main: '#ff5724',
     dark: '#ff5724',
   },
-  fg: { main: '#fff', dark: '#292929', paper: '#868383' },
+  fg: { main: '#fff', dark: '#292929' },
   neutral: '#0A0A05',
   breakpoints: {
     xs: '0px',

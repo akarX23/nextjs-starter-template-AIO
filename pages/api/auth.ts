@@ -15,7 +15,7 @@ async function handler(req: CustomeApiRequest, res: NextApiResponse) {
       if (!req.user) return res.status(statusCode.NotFound).json({})
       return res.status(statusCode.Success).json(req.user)
     case 'POST':
-      return setUserForApp(req.user || req.tempUser, req.uid).then(
+      return setUserForApp(req.user || req.tempUser, req.uid, req.body).then(
         (response) => {
           res.status(response.status).json(response.data)
         }

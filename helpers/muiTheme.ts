@@ -1,25 +1,21 @@
 import { createTheme } from '@mui/material/styles'
+import {} from '@mui/material/colors'
 
 // THIS OBJECT SHOULD BE SIMILAR TO ../tailwind.config.js
 const themeConstants = {
-  paper: '#E5E5E5',
+  paper: '#222222',
   primary: {
-    main: '#36C658',
-    dark: '#00A828',
+    main: '#068888',
+    dark: '#046262',
   },
-  secondary: { main: '#353F39', dark: '#2C3530' },
+  secondary: { main: '#7AE7C7', dark: '#53DFB5' },
   error: {
     main: '#ff5724',
     dark: '#ff5724',
   },
   fg: { main: '#fff', dark: '#292929' },
   breakpoints: {
-    xs: 0,
-    mb: 350,
-    sm: 600,
-    md: 960,
-    lg: 1280,
-    xl: 1920,
+    values: { xs: 0, mb: 350, sm: 600, md: 960, lg: 1280, xl: 1920 },
   },
 }
 
@@ -35,13 +31,12 @@ const theme = createTheme({
     },
     error: themeConstants.error,
   },
-  breakpoints: {
-    values: themeConstants.breakpoints,
-  },
+  breakpoints: themeConstants.breakpoints,
   typography: {
     button: {
       textTransform: 'none',
     },
+    fontFamily: ['Manrope', 'sans-serif'].join(','),
   },
 })
 

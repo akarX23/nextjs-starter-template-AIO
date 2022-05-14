@@ -1,4 +1,7 @@
 import type { NextApiRequest } from 'next'
+import { ImageProps } from 'next/image'
+import React from 'react'
+import { SvgIconProps } from '@mui/material'
 
 export interface firebaseAdminUser {
   email: string
@@ -62,4 +65,24 @@ export interface CustomeApiRequest extends NextApiRequest {
 export interface ApiController {
   status: number
   data?: object | number | null
+}
+
+export interface ImageAbstractProps extends ImageProps {
+  containerClass?: string
+  alt?: string
+  noBgColor?: boolean
+  overl?: boolean
+}
+
+export interface DefaultComponentProps {
+  children?: React.ReactElement
+  window?: any
+  key?: number | string
+}
+
+export interface NavbarDropdown {
+  text: string
+  link?: string
+  Icon?: (props: SvgIconProps) => JSX.Element
+  func?: Function
 }

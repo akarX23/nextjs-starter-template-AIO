@@ -1,58 +1,32 @@
-@tailwind base;
+/* @tailwind base; */
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  .h0 {
-    @apply font-heading text-3xl font-bold text-neutral md:text-5xl;
-  }
+/* Default body background from our theme */
 
-  h1,
-  .h1 {
-    @apply font-heading text-3xl font-bold text-neutral md:text-4xl;
-  }
+a {
+  text-decoration: none;
+  @apply text-fg;
+}
 
-  h2,
-  .h2 {
-    @apply font-heading text-2xl font-bold text-fg md:text-3xl;
-  }
+body {
+  @apply bg-paper font-primary;
+}
 
-  h3,
-  .h3 {
-    @apply font-primary text-xl font-bold text-fg md:text-2xl;
-  }
+::-webkit-scrollbar-track {
+  @apply bg-paper;
+}
 
-  h4,
-  .h4 {
-    @apply font-primary text-base font-bold text-fg md:text-lg;
-  }
+::-webkit-scrollbar-thumb {
+  background-color: #444444cc;
+  border-radius: 20px;
+  border: 6px solid transparent;
+  background-clip: content-box;
+  opacity: 0;
+}
 
-  body,
-  p,
-  .p {
-    @apply font-primary text-sm text-fg md:text-base;
-  }
-
-  /* Default body background from our theme */
-  body {
-    @apply bg-paper;
-  }
-
-  ::-webkit-scrollbar-track {
-    @apply bg-paper;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background-color: #444444cc;
-    border-radius: 20px;
-    border: 6px solid transparent;
-    background-clip: content-box;
-    opacity: 0;
-  }
-
-  ::-webkit-scrollbar-thumb:hover {
-    background-color: #a8bbbf;
-  }
+::-webkit-scrollbar-thumb:hover {
+  background-color: #a8bbbf;
 }
 
 @layer utilities {
