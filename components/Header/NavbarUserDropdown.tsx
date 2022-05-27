@@ -11,13 +11,13 @@ import Link from 'next/link'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
 import MonetizationOnIcon from '@mui/icons-material/MonetizationOn'
 
-import useFirebaseAuth from 'helpers/hooks/useFirebaseAuth'
+import useAuth from 'helpers/hooks/useAuth'
 import { useAppSelector } from 'redux/hooks'
 import { NavbarDropdown } from 'helpers/types'
 
 const NavbarUserDropdown = () => {
   const { details, isLoading } = useAppSelector((state) => state.auth)
-  const { signOutFromApp } = useFirebaseAuth()
+  const { signOutFromApp } = useAuth()
 
   const [anchorEl, setAnchorEl] = useState(null)
 

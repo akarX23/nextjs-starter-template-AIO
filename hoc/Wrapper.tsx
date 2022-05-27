@@ -1,7 +1,6 @@
 import React from 'react'
 
 import Layout from 'hoc/Layout'
-import 'helpers/firebaseConfig'
 import useGlobalAuth from 'helpers/hooks/useGlobalAuth'
 import { DefaultComponentProps } from 'helpers/types'
 

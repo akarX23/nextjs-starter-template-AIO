@@ -2,12 +2,6 @@ import { userInDb } from 'helpers/types'
 import mongoose from 'mongoose'
 
 const UserSchema = new mongoose.Schema({
-  uid: {
-    type: String,
-    unique: true,
-    required: true,
-    index: true,
-  },
   name: {
     type: String,
     required: true,
@@ -40,55 +34,17 @@ const UserSchema = new mongoose.Schema({
     type: Number,
     index: true,
   },
-  linkedIn: {
+  password: {
     type: String,
-  },
-  ghName: {
-    type: String,
-  },
-  photoURL: {
-    type: String,
-    validate: {
-      validator: function (url: string) {
-        return /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/.test(
-          url
-        )
-      },
-    },
-  },
-  batch: {
-    type: Number,
-    min: 2021,
-    index: true,
-  },
-  resume: {
-    type: String,
-    validate: {
-      validator: function (url: string) {
-        return /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/.test(
-          url
-        )
-      },
-    },
-  },
-  providerId: {
-    type: String,
-    default: '',
-  },
-  authToken: {
-    type: String,
-    default: '',
     required: true,
-    index: true,
   },
 })
 
 const User = mongoose.models.User || mongoose.model('User', UserSchema)
 
-const findOne = async (query: userInDb) =>
-  await User.findOne(query, '-authToken')
+const findOne = async (query: userInDb) => await User.findOne(query).lean()
 
-const find = async (query: userInDb) => await User.find(query, '-authToken')
+const find = async (query: userInDb) => await User.find(query).lean()
 
 const insertOne = async (data: userInDb) => {
   let newUser = new User(data)
@@ -120,7 +76,7 @@ const upsertOne = async (query: userInDb, data: userInDb) => {
 const findByUid = async (uid: string) => await User.findOne({ uid })
 
 const findByToken = async (token: string) =>
-  await User.findOne({ authToken: token }, '-authToken')
+  await User.findOne({ authToken: token })
 
 export {
   User,

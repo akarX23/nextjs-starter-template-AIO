@@ -1,41 +1,23 @@
-import * as User from 'models/User'
 import { statusCode } from 'helpers/constants'
-import admin from 'helpers/firebaseAdmin'
-import { getDbUserObjectFromFirebaseAuth } from 'helpers/utils'
 
-import type { NextApiResponse } from 'next'
-import { CustomeApiRequest } from 'helpers/types'
-
-// Login for development
-let uidDev =
-  process.env.NODE_ENV === 'development' ? process.env.SAMPLE_UID_DEV : ''
+import type { NextApiRequest, NextApiResponse } from 'next'
+import { userFromRequest } from 'controllers/user'
 
 const auth =
   (handler: Function, authReqd = true) =>
-  async (req: CustomeApiRequest, res: NextApiResponse) => {
+  async (req: NextApiRequest, res: NextApiResponse) => {
     // GET CURRENT USER'S AUTHENTICATION STATE
     // ATTACH USER IN THE REQUEST OBJECT
     try {
-      let authToken = req.headers.authtoken
+      let user = userFromRequest(req)
 
-      let firebaseUser = await admin.auth().verifyIdToken(authToken)
-
-      console.log('Firebase user', firebaseUser)
-
-      let userFromDb = await User.findByToken(authToken)
-      let uid = firebaseUser?.uid || userFromDb?.uid || uidDev
-
-      if (!userFromDb && authReqd) {
-        throw new Error('User not found')
+      if (authReqd && !user) {
+        res.status(statusCode.Unauthorized).json({
+          status: statusCode.Unauthorized,
+          message: 'Unauthorized',
+        })
+        return
       }
-
-      req.user = userFromDb
-      req.uid = uid
-      req.userId = userFromDb?._id
-      req.tempUser =
-        !userFromDb && firebaseUser
-          ? getDbUserObjectFromFirebaseAuth(firebaseUser, authToken)
-          : null
 
       return handler(req, res)
     } catch (error) {
