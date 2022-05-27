@@ -33,7 +33,7 @@ export interface reduxUserState {
   isAuthenticated: boolean
   isEmailAuthenticated: boolean
   reauthenticate: boolean
-  details: any
+  details: userInDb
 }
 
 export interface userInDb {
@@ -50,6 +50,7 @@ export interface userInDb {
   resume?: string
   providerId?: string
   authToken?: string
+  _id?: string
 }
 
 export interface CustomeApiRequest extends NextApiRequest {
