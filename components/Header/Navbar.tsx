@@ -4,7 +4,6 @@ import AppBar from '@mui/material/AppBar'
 import Toolbar from '@mui/material/Toolbar'
 import IconButton from '@mui/material/IconButton'
 import MenuIcon from '@mui/icons-material/Menu'
-import Button from '@mui/material/Button'
 import Slide from '@mui/material/Slide'
 import useScrollTrigger from '@mui/material/useScrollTrigger'
 import Zoom from '@mui/material/Zoom'
@@ -20,9 +19,6 @@ import logo from 'assets/Images/logo.png'
 import Drawer from 'components/Header/Drawer'
 import ImageAbstract from 'widgets/ImageAbstract/ImageAbstract'
 import { navBarLinks } from 'helpers/constants'
-import { toggleModal } from 'redux/authModal'
-import NavbarUserDropdown from 'components/Header/NavbarUserDropdown'
-import { useAppDispatch, useAppSelector } from 'redux/hooks'
 import { DefaultComponentProps } from 'helpers/types'
 
 function HideOnScroll(props: DefaultComponentProps) {
@@ -69,10 +65,7 @@ function ScrollTop(props: DefaultComponentProps) {
 
 const Navbar: React.FC<DefaultComponentProps> = (props) => {
   const [drawerOpen, setDrawerOpen] = useState(false)
-  const { isAuthenticated, isLoading } = useAppSelector((state) => state.auth)
-  const dispatch = useAppDispatch()
 
-  const theme = useTheme()
 
   return (
     <>
@@ -112,22 +105,6 @@ const Navbar: React.FC<DefaultComponentProps> = (props) => {
               ))}
             </div>
 
-            {!isLoading ? (
-              !isAuthenticated ? (
-                <Button
-                  variant="contained"
-                  color="primary"
-                  className="ml-2 w-full max-w-max whitespace-nowrap text-sm mbmax:p-2 mb:text-lg"
-                  onClick={() => dispatch(toggleModal(true))}
-                >
-                  Sign Up
-                </Button>
-              ) : (
-                <NavbarUserDropdown />
-              )
-            ) : (
-              <div></div>
-            )}
           </Toolbar>
         </AppBar>
       </HideOnScroll>

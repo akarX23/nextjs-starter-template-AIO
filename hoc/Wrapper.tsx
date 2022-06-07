@@ -1,12 +1,10 @@
 import React from 'react'
 
 import Layout from 'hoc/Layout'
-import useGlobalAuth from 'helpers/hooks/useGlobalAuth'
 import { DefaultComponentProps } from 'helpers/types'
 
 const Wrapper = (Component: React.FC) => {
   const PageWrapper: React.FC<DefaultComponentProps> = (props) => {
-    useGlobalAuth()
 
     // MUTING REF ERRORS
     const originalError = console.error
